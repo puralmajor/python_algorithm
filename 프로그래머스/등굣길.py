@@ -1,25 +1,31 @@
-# 문제에서 주는 예시가 틀려버려서 못품
+from collections import deque
 def solution(m, n, puddles):
-    answer = 0
     dx, dy = [0, 1], [1, 0]
-    maps = [[float('inf')] * m for _ in range(n)]
-    maps[0][0] = 0
-    if len(puddles) != 0:
-        for p in puddles:
-            maps[p[0]][p[1]] = -1
+    maps = [[0] * m for _ in range(n)]
+    maps[0][0] = 1
 
-    for x in range(n):
-        for y in range(m):
-            if maps[x][y] == -1:
-                continue
+    for x, y in puddles:
+        maps[y][x] = -1
 
-            for i in range(2):
-                px, py = x + dx[i], y + dy[i]
-                if n <= px or m <= py or maps[px][py] == -1:
-                    continue
-                maps[px][py] = min(maps[px][py], maps[x][y] + 1)
+    q = deque()
+    q.append((0, 0))
 
-    for t in maps:
-        print(t)
+    visit = set()
+    visit.add((0, 0))
 
-    return answer
+    while True:
+        x, y = q.popleft()
+        if x == n - 1 and y == m - 1:
+            break
+
+        visit.add((x, y))
+
+        for i in range(2):
+            nx, ny = x + dx[i], y + dy[i]
+            if nx < n and ny < m and maps[nx][ny] != -1:
+                q.append((nx, ny))
+                maps[nx][ny] = (maps[nx][ny]+1) % (10**9+7)
+
+    print(*maps, sep='\n')
+
+    return maps[-1][-1]
