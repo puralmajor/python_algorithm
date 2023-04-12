@@ -1,9 +1,16 @@
-temp = []
-visit = [1, 2]
+a = "S" + "O"*99
+b = "O" * 100
+c = "O" * 50 + "E" + "O" * 49
+d = "X" * 19 + "L" + "X" * 80
 
-for _ in range(3):
-    temp.append(visit)
+maps = [a]
 
-for i in range(3):
-    x = temp.pop()
-    x.append(i)
+for i in range(99):
+    if i == 31:
+        maps.append(d)
+    elif i == 78:
+        maps.append(c)
+    else:
+        maps.append(b)
+
+print(*maps, sep='\n')

@@ -2,37 +2,33 @@ import sys
 from collections import defaultdict
 inp = sys.stdin.readline
 
-
-def preorder(cur):
-    print(cur, end='')
-    for i in tree[cur]:
-        if i == '.':
-            continue
-        preorder(i)
+def preorder(node):
+    if node != '.':
+        print(node,end='')
+        preorder(tree[node][0])
+        preorder(tree[node][1])
 
 
-def inorder(cur):
-    if tree[cur][0] == '.':
-        return
-    inorder(tree[cur][0])
-    print(cur, end='')
-    inorder(tree[cur][1])
+def inorder(node):
+    if node != '.':
+        inorder(tree[node][0])
+        print(node,end='')
+        inorder(tree[node][1])
 
 
-def postorder(cur):
-    for i in tree[cur]:
-        if i == '.':
-            continue
-        postorder(i)
-    print(cur, end='')
+def postorder(node):
+    if node != '.':
+        postorder(tree[node][0])
+        postorder(tree[node][1])
+        print(node, end='')
 
 
-n = int(inp())
+n = int(input())
 tree = defaultdict(list)
 
-for _ in range(n):
-    parent, left, right = inp().split()
-    tree[parent] = [left, right]
+for i in range(n):
+    cur, left, right = input().strip().split()
+    tree[cur] = [left, right]
 
 preorder('A')
 print()
