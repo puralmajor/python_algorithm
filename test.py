@@ -1,3 +1,6 @@
-a = [1, 2]
-b = [4, 3]
-print(list(set(a)&set(b))[0])
+import sys
+a = ['1', '2', '3']
+b = '123'
+
+print(sys.getsizeof(a))
+print(sys.getsizeof(b))

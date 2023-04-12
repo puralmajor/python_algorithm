@@ -7,6 +7,11 @@ if k == n:
     print(n)
     exit()
 
+elif k < n:
+    print(n-k)
+    print(*[i for i in range(n, k-1, -1)])
+    exit()
+
 visit = set()
 q = deque()
 q.append((n, [n]))
@@ -25,7 +30,7 @@ while True:
 
     for i in range(3):
         nx = move[i](cur)
-        if 0 <= nx <= 100000 and nx not in visit:
-            path.append(nx)
-            q.append(nx)
-            path.pop()
+        if 0 <= nx <= 200000 and nx not in visit:
+            temp = path.copy()
+            temp.append(nx)
+            q.append((nx, temp))

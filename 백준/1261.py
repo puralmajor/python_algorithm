@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from collections import deque
 import sys
 
@@ -28,3 +29,7 @@ while q:
                     q.appendleft((broken, nx, ny))
                 else:
                     q.append((broken + 1, nx, ny))
+=======
+n, m = map(int, input().split())
+miro = [list(map(int, input().split())) for _ in range(n)]
+>>>>>>> Stashed changes
