@@ -1,4 +1,5 @@
+import math
 h, w, n, m = map(int, input().split())
-area = h*w
-box = (n+1)*(m+1)
-print(area//box)
+h = math.ceil(h/(n+1))
+w = math.ceil(w/(m+1))
+print(h*w)
